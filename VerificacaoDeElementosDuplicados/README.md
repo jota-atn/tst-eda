@@ -17,5 +17,10 @@
 > true  
 
 > javac Solucao.java; java Solucao  
+<<<<<<< HEAD
 > 1 6 8 7 9 5  
 > false  
+=======
+ 1 6 8 7 9 5  
+ false  
+>>>>>>> refs/remotes/origin/main
