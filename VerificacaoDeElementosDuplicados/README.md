@@ -12,10 +12,10 @@
 > Seu programa deve imprimir true se a sequência possuir elementos duplicados e false caso contrário.
 
 ## Exemplos de execução
-> javac Solucao.java; java Solucao
-> 1 5 6 8 8 4 2 0
-> true
+> javac Solucao.java; java Solucao  
+> 1 5 6 8 8 4 2 0  
+> true  
 
-> javac Solucao.java; java Solucao
-> 1 6 8 7 9 5
-> false
+> javac Solucao.java; java Solucao  
+> 1 6 8 7 9 5  
+> false  
