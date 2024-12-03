@@ -1,0 +1,52 @@
+#!/bin/bash
+
+TESTES_DIR="$(pwd)"
+
+if [[ "$PWD" != *"tst-eda"* ]]; then
+    echo -e "\e[33mVocê não está no diretório de testes da disciplina EDA.\e[0m"
+
+else
+	# conferindo se o arquivo existe
+	if [ ! -f "Solution.java" ]; then
+		echo -e "\e[33mArquivo 'Solution.java' não encontrado\e[0m"
+		exit 1
+	fi
+
+	javac "Solution.java"
+
+	if [ $? -eq 0 ]; then
+		echo -e "\e[32mCompilação bem-sucedida!\e[0m"	
+
+		arquivos=()
+
+			for arquivo in "$TESTES_DIR"/.input*.txt; do
+			if [[ -f "$arquivo" ]]; then
+				arquivos+=("$arquivo")
+			fi
+		done
+		
+		contador=0
+
+		for arquivo in "${arquivos[@]}"; do
+			((contador++))
+			java "Solution" < "$arquivo" > ".saida$contador.txt"
+		done 
+
+		contador=1
+
+		for arquivo in "$TESTES_DIR"/.saida*Esperada.txt; do
+			if cmp -s "$arquivo" "$TESTES_DIR"/.saida"$contador".txt; then
+				echo -e "\e[32mTeste $contador - ✅\e[0m"
+			else
+				echo -e "\e[31mTeste $contador - ❌\e[0m"
+			fi
+
+			((contador++))
+
+		done
+
+	else
+		echo -e "\e[31mErro na compilação\e[0m"
+	fi
+
+fi
