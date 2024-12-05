@@ -1,4 +1,4 @@
-# Encontra "quebra" recursivo
+#Encontra "quebra" recursivo
 > Escreva um programa recursivo que encontra o elemento que quebra uma sequência ordenada. Seu programa deve retornar o índice desse elemento. Se não houver o elemento que quebra a sequencia, deve imprimir -1.  
 
 > O elemento que "quebra" uma sequencia em ordem crescente é o que não está ordenado de acordo com os anteriores. Por exemplo, na sequência  

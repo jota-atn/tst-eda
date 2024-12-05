@@ -1,0 +1,1 @@
+T(n) = theta(n**1 * log n)
