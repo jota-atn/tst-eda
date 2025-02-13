@@ -11,20 +11,32 @@ class Solution {
 
         int[] v = toInt(entrada);
 
-        insertionSort(v, 0, 0);
-
-        System.out.println(Arrays.toString(v));
+        insertionSort(v, v.length);
 
     }
 
-    private static void insertionSort(int[] v, int i, int j) {
-        while (j > 0 && v[j] < v[j - 1]) {
-            swap(v, j, j-1);
-            insertionSort(v, i + 1, j - 1);
-        }
-    }
+    private static void insertionSort(int[] v, int n) {
+			if (n <= 1)
+				return;
 
-    private static int[] toInt(String[] v) {
+			insertionSort(v, n-1);
+
+			int indiceUltimo = v[n - 1];
+      int j = n - 2;
+
+			while (j >= 0 && v[j] > indiceUltimo) {
+					v[j + 1] = v[j];
+					j--;
+			}
+
+			v[j + 1] = indiceUltimo;
+
+			if (n > 1) {
+					System.out.println(Arrays.toString(v));
+			}
+		}	
+
+		private static int[] toInt(String[] v) {
         int[] output = new int[v.length];
 
         for (int i = 0; i < v.length; i++)
@@ -33,11 +45,6 @@ class Solution {
         return output;
 
     }
-
-    private static void swap(int[] v, int i, int j) {
-        int aux = v[i];
-        v[i] = v[j];
-        v[j] = aux;
-    }
-
 }
+
+

@@ -23,7 +23,6 @@ class Solution {
 			return v[i] > v[i + 1] ? (i + 1): buscaQuebraSequencia(v, i + 1);
 		}
 
-
 		if (v[i] > v[i + 1]) {
 			return i + 1;
 		}
