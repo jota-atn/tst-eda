@@ -15,19 +15,29 @@ public class Pilha {
     }
 
     public void push(int e) {
-       this.pilha[++topo] = e;
+      if (isFull()) 
+				throw new RuntimeException("Pilha Cheia!");
+			this.pilha[++topo] = e;
     }
 
     public void pop() {
+			if (isEmpty())
+				throw new RuntimeException("Pilha Vazia!");
         topo--;
     }
+
+		public int peek() {
+			if (isEmpty()) 
+				throw new RuntimeException("Pilha Vazia!");
+			return pilha[topo];
+		}
 
     public boolean isEmpty() {
         return this.topo == -1;
     }
 
     public boolean isFull() {
-        return (this.topo) == pilha.length - 1; 
+        return this.topo + 1 == pilha.length; 
     }
 
     @Override

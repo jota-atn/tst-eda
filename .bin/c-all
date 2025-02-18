@@ -1,0 +1,39 @@
+#!/bin/bash
+
+ROOT_DIR=~/tst-eda
+COMPLETED_DIRS="$ROOT_DIR/.compiled_dirs"
+
+if [[ "$PWD" != *"tst-eda" ]]; then
+    echo -e "\e[33mVocê não está no diretório de testes da disciplina EDA.\e[0m"
+    exit 1
+fi
+
+contador_sucesso=0
+contador_erros=0
+
+if [ ! -f "$COMPLETED_DIRS" ]; then
+    touch "$COMPLETED_DIRS"
+fi
+
+contador_sucesso=$(wc -l < "$COMPLETED_DIRS")
+
+for java_file in $(find "$ROOT_DIR" -type f -name "*.java"); do
+    bin_dir=$(dirname "$java_file")/bin
+
+    if grep -q "$bin_dir" "$COMPLETED_DIRS"; then
+        continue
+    fi
+
+    mkdir -p "$bin_dir"
+    if javac -d "$bin_dir" "$java_file" &>/dev/null; then
+        contador_sucesso=$((contador_sucesso + 1))
+        echo "$bin_dir" >> "$COMPLETED_DIRS"
+    else
+        contador_erros=$((contador_erros + 1))
+        echo -e "\e[33mErro de compilação no diretório: $bin_dir\e[0m"
+    fi
+done
+
+echo -e "\e[32mTotal de compilações bem-sucedidas: $contador_sucesso\e[0m"
+echo -e "\e[31mTotal de erros de compilação: $contador_erros\e[0m"
+
