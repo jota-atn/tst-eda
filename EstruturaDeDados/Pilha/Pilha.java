@@ -40,6 +40,25 @@ public class Pilha {
         return this.topo + 1 == pilha.length; 
     }
 
+    public int indexOf(int valor) {
+        Pilha helper = new Pilha(pilha.length);
+        for (int i = 0; i < topo; i++) {
+            if (pilha[i] == valor)
+                return i; 
+        }
+
+        return -1;
+
+    }
+
+    public int size() {
+        int contador = 0;
+        for (int i = 0; i <= topo; i++) {
+            contador++;
+        }
+        return contador;
+    }
+
     @Override
     public String toString() {
         return geraToString();
@@ -49,8 +68,12 @@ public class Pilha {
 
         String output = "";
 
-        for (int i = 0; i <= topo; i++) 
-            output += (this.pilha[i] + "\n");
+        for (int i = topo; i >= 0; i--) {
+            if (i > 0)
+                output += (this.pilha[i] + ", ");
+            else
+                output += (this.pilha[i]);
+        }
 
         return output;
 
